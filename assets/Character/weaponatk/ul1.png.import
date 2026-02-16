@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhdp0afeu77tq"
-path="res://.godot/imported/Character_SlashDownRight.png-38bca2e7486d13823ef4723d15d74a43.ctex"
+uid="uid://dumxolmh0j0lt"
+path="res://.godot/imported/ul1.png-06e9485b1c016b0cf9bb6ae85a664fe7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Character/Character_SlashDownRight.png"
-dest_files=["res://.godot/imported/Character_SlashDownRight.png-38bca2e7486d13823ef4723d15d74a43.ctex"]
+source_file="res://assets/Character/weaponatk/ul1.png"
+dest_files=["res://.godot/imported/ul1.png-06e9485b1c016b0cf9bb6ae85a664fe7.ctex"]
 
 [params]
 
