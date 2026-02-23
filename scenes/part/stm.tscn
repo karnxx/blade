@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bxem653eflib"]
+
+[ext_resource type="Script" uid="uid://8gescjg3k8if" path="res://scenes/part/stm.gd" id="1_my6gt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lb2pw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my6gt"]
+bg_color = Color(0.4745098, 0.6392157, 0.99607843, 1)
+corner_radius_top_right = 500
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mh0rx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40tdq"]
+bg_color = Color(0.47277135, 0.64046484, 0.9956779, 1)
+corner_radius_top_left = 500
+
+[node name="stm" type="Control" unique_id=563463226]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_my6gt")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=264539424]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 609.0
+offset_right = 976.0
+offset_bottom = 637.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_lb2pw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_my6gt")
+value = 50.0
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="." unique_id=1306499884]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 609.0
+offset_right = 576.0
+offset_bottom = 637.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_mh0rx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_40tdq")
+value = 50.0
+fill_mode = 1
+show_percentage = false

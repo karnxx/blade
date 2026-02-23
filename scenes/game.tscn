@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bifvjo0k6dowa" path="res://assets/Tileset/Tilemap_color5.png" id="7_kvuet"]
 [ext_resource type="Texture2D" uid="uid://cs3ax0fl55wn0" path="res://assets/Tileset/Water Background color.png" id="8_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://36hleder35j2" path="res://assets/Tileset/Water Foam.png" id="9_vtaks"]
-[ext_resource type="Texture2D" uid="uid://dhke7yxgs3bdf" path="res://assets/Character/Weapon/dl3.png" id="10_vtaks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gee14"]
 texture = ExtResource("5_kvpfn")
@@ -386,41 +385,13 @@ sources/11 = SubResource("TileSetAtlasSource_0tnpc")
 sources/12 = SubResource("TileSetAtlasSource_vtaks")
 sources/13 = SubResource("TileSetAtlasSource_ir15t")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
-atlas = ExtResource("10_vtaks")
-region = Rect2(61, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
-atlas = ExtResource("10_vtaks")
-region = Rect2(125, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
-atlas = ExtResource("10_vtaks")
-region = Rect2(189, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
-atlas = ExtResource("10_vtaks")
-region = Rect2(253, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ir15t"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kvpfn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dinhu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kvuet")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_trtic")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="Environment" id="Environment_0tnpc"]
+background_mode = 3
+tonemap_mode = 1
+glow_enabled = true
+glow_blend_mode = 0
+glow_hdr_threshold = 1.5
+glow_hdr_luminance_cap = 2.0
 
 [node name="games" type="Node2D" unique_id=1763644330]
 
@@ -437,7 +408,5 @@ layer_2/name = "Layer2"
 layer_2/z_index = -1
 layer_2/tile_data = PackedInt32Array(786420, 7, 0, 786421, 7, 0, 786422, 7, 0, 786423, 7, 0, 786424, 7, 0, 786425, 7, 0, 786426, 7, 0, 786427, 7, 0, 786428, 7, 0, 786429, 7, 0, 786430, 7, 0, 786431, 7, 0, 720896, 7, 0, 720897, 7, 0, 720898, 7, 0, 720899, 7, 0, 720900, 7, 0, 720901, 7, 0, 720902, 7, 0, 720903, 7, 0, 720904, 7, 0, 720905, 7, 0, 720906, 7, 0, 720907, 7, 0, 720908, 7, 0, 1048564, 13, 0, 524273, 13, 0, 458767, 13, 0, 131089, 13, 0, 1245199, 13, 0, -65554, 13, 0, -196591, 13, 0, 1310695, 13, 0, 1376257, 13, 0, 786454, 13, 0, 393204, 7, 0, 458740, 7, 0, 524276, 7, 0, 589812, 7, 0, 655348, 7, 0, 720884, 7, 0, -196620, 7, 0, -131084, 7, 0, -65548, 7, 0, -12, 7, 0, 65524, 7, 0, 131060, 7, 0, 196596, 7, 0, 262132, 7, 0, 327668, 7, 0, -196619, 7, 0, -196618, 7, 0, -196617, 7, 0, -196616, 7, 0, -196615, 7, 0, -196614, 7, 0, -196613, 7, 0, -196612, 7, 0, -196611, 7, 0, -196610, 7, 0, -196609, 7, 0, -262144, 7, 0, -262143, 7, 0, -262142, 7, 0, -262141, 7, 0, -262140, 7, 0, -262139, 7, 0, -262138, 7, 0, -262137, 7, 0, -262136, 7, 0, -262135, 7, 0, -262134, 7, 0, -262133, 7, 0, -262132, 7, 0, -196596, 7, 0, -131060, 7, 0, -65524, 7, 0, 12, 7, 0, 65548, 7, 0, 131084, 7, 0, 196620, 7, 0, 262156, 7, 0, 327692, 7, 0, 393228, 7, 0, 458764, 7, 0, 524300, 7, 0, 589836, 7, 0, 655372, 7, 0, 1114105, 13, 0, 393194, 13, 0, 65520, 13, 0, 131059, 13, 0, -327685, 13, 0, -262148, 13, 0, -327678, 13, 0, -589835, 13, 0, -655359, 13, 0, -655358, 13, 0, -524281, 13, 0, 1179655, 13, 0, 1376266, 13, 0, 983057, 13, 0)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=848201757]
-position = Vector2(-10686, -562)
-sprite_frames = SubResource("SpriteFrames_ir15t")
-frame_progress = 0.27839553
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1513666394]
+environment = SubResource("Environment_0tnpc")
