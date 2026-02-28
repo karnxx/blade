@@ -47,8 +47,8 @@
 [ext_resource type="Texture2D" uid="uid://dtqqmdt4tbsav" path="res://assets/Character/Weapon/ur3.png" id="21_ap4o6"]
 [ext_resource type="PackedScene" uid="uid://bxem653eflib" path="res://scenes/part/stm.tscn" id="46_fdu53"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjvkk"]
-size = Vector2(28, 38)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdu53"]
+height = 44.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ukcb"]
 atlas = ExtResource("2_gvr8g")
@@ -1679,12 +1679,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uamf4"]
 size = Vector2(73, 68)
 
-[node name="plr" type="CharacterBody2D" unique_id=1930804147]
+[node name="plr" type="CharacterBody2D" unique_id=1930804147 groups=["plr"]]
 z_index = 1
+collision_layer = 3
+collision_mask = 15
+slide_on_ceiling = false
+platform_on_leave = 2
 script = ExtResource("1_cjvkk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=840726946]
-shape = SubResource("RectangleShape2D_cjvkk")
+shape = SubResource("CapsuleShape2D_fdu53")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=770070331]
 position_smoothing_enabled = true
@@ -1701,7 +1705,7 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ijql0")
 animation = &"hdr"
 
-[node name="Node" type="Node" parent="." unique_id=44048575]
+[node name="Node" type="Node2D" parent="." unique_id=1717234512]
 
 [node name="ul" type="Area2D" parent="Node" unique_id=1060242713]
 collision_layer = 0

@@ -1,0 +1,105 @@
+extends CharacterBody2D
+
+var plr
+var isplr = false
+enum states {idle, melee, laser, death, follow, homing_missle, dash, buff}
+
+var current_state
+var previous_state
+
+var bulala = preload("uid://byqwfej4mhg8g")
+var is_ranging =false
+var can_missle = true
+var dir
+func _physics_process(delta: float) -> void:
+	if plr:
+		dir = plr.global_position - global_position
+		if dir.x < 0:
+			$AnimatedSprite2D.flip_h= true
+		else:
+			$AnimatedSprite2D.flip_h = false
+	match current_state:
+		states.idle:
+			idle()
+		states.follow:
+			follow()
+		states.melee:
+			melee()
+	move_and_collide(velocity * delta)
+
+func melee():
+	velocity = Vector2.ZERO
+	$AnimatedSprite2D.play("attack")
+	await $AnimatedSprite2D.animation_finished
+	
+	if dir.length() > 80:
+		var rani = randi() % 1
+		if rani == 0:
+			changestate(states.dash)
+			dash()
+		else:
+			changestate(states.follow)
+
+func _ready() -> void:
+	current_state = states.idle
+
+func changestate(stete):
+	previous_state = current_state
+	current_state = stete
+	
+func idle():
+	if current_state == states.idle:
+		$AnimatedSprite2D.play('idle')
+
+func dash():
+	$AnimatedSprite2D.play('glowing')
+	var twen = create_tween()
+	twen.tween_property(self, "global_position", plr.global_position, 0.8)
+	await twen.finished
+func follow():
+	if is_ranging:
+		return
+	$AnimatedSprite2D.play('idle')
+	if plr == null:
+		changestate(states.idle)
+		return
+	velocity = dir.normalized() * 100
+	if dir.length() < 80:
+		changestate(states.melee)
+		velocity = Vector2.ZERO
+		return
+	elif dir.length() > 200 and can_missle:
+		missile()
+		velocity = Vector2.ZERO
+		return
+
+func missile():
+	can_missle = false
+	is_ranging = true
+	changestate(states.homing_missle)
+	$AnimatedSprite2D.play("rangedatk")
+	await $AnimatedSprite2D.animation_finished
+	var bullet = bulala.instantiate()
+	bullet.global_position = $AnimatedSprite2D/a/Marker2D.global_position
+	get_parent().add_child(bullet)
+	await get_tree().create_timer(1).timeout
+	is_ranging = false
+	get_tree().create_timer(15).timeout.connect(camissle)
+	changestate(states.dash)
+	dash()
+
+func camissle():
+	can_missle = true
+
+func _process(delta: float) -> void:
+	$AnimatedSprite2D/deb.text = str(current_state)
+
+func _on_playerdet_body_entered(body: Node2D) -> void:
+	if body.is_in_group('plr'):
+		plr = body
+		isplr = true
+		changestate(states.follow)
+
+func _on_playerdet_body_exited(body: Node2D) -> void:
+	if body.is_in_group('plr'):
+		isplr = false

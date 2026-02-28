@@ -26,7 +26,7 @@ script = ExtResource("1_my6gt")
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=264539424]
 layout_mode = 0
 offset_left = 576.0
-offset_top = 609.0
+offset_top = 629.0
 offset_right = 976.0
 offset_bottom = 637.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_lb2pw")
@@ -37,7 +37,7 @@ show_percentage = false
 [node name="ProgressBar2" type="ProgressBar" parent="." unique_id=1306499884]
 layout_mode = 0
 offset_left = 176.0
-offset_top = 609.0
+offset_top = 629.0
 offset_right = 576.0
 offset_bottom = 637.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_mh0rx")

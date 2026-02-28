@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bifvjo0k6dowa" path="res://assets/Tileset/Tilemap_color5.png" id="7_kvuet"]
 [ext_resource type="Texture2D" uid="uid://cs3ax0fl55wn0" path="res://assets/Tileset/Water Background color.png" id="8_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://36hleder35j2" path="res://assets/Tileset/Water Foam.png" id="9_vtaks"]
+[ext_resource type="PackedScene" uid="uid://ys03bebf6d4d" path="res://scenes/rock.tscn" id="10_vtaks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gee14"]
 texture = ExtResource("5_kvpfn")
@@ -410,3 +411,6 @@ layer_2/tile_data = PackedInt32Array(786420, 7, 0, 786421, 7, 0, 786422, 7, 0, 7
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1513666394]
 environment = SubResource("Environment_0tnpc")
+
+[node name="Rock" parent="." unique_id=2081025131 instance=ExtResource("10_vtaks")]
+position = Vector2(118, 439)

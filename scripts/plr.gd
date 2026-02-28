@@ -206,10 +206,10 @@ func atkk():
 	isatk = true
 
 	var dir = get_snap_dir()
-	var name = get_dir_name(dir)
+	var namer = get_dir_name(dir)
 
 	$AnimatedSprite2D.stop()
-	$AnimatedSprite2D.play(name + str(combo))
+	$AnimatedSprite2D.play(namer + str(combo))
 
 	var lunge = light_lunge + (combo - 1) * 90.0
 	velocity += dir * lunge
@@ -217,16 +217,16 @@ func atkk():
 	$atk.visible = true
 	disable_all_hitboxes()
 
-	if name == "ul":
+	if namer == "ul":
 		$Node/ul.monitoring = true
-	elif name == "ur":
+	elif namer == "ur":
 		$Node/ur.monitoring = true
-	elif name == "dl":
+	elif namer == "dl":
 		$Node/dl.monitoring = true
-	elif name == "dr":
+	elif namer == "dr":
 		$Node/dr.monitoring = true
 
-	$atk.play(name + str(combo))
+	$atk.play(namer + str(combo))
 	await $atk.animation_finished
 
 	disable_all_hitboxes()
@@ -255,24 +255,24 @@ func heavy():
 	ishatk = true
 
 	var dir = get_snap_dir()
-	var name = get_dir_name(dir)
+	var namer = get_dir_name(dir)
 
 	$AnimatedSprite2D.stop()
-	$AnimatedSprite2D.play(name + "1")
+	$AnimatedSprite2D.play(namer + "1")
 
 	$atk.visible = true
 	disable_all_hitboxes()
 
-	if name == "ul":
+	if namer == "ul":
 		$Node/ul.monitoring = true
-	elif name == "ur":
+	elif namer == "ur":
 		$Node/ur.monitoring = true
-	elif name == "dl":
+	elif namer == "dl":
 		$Node/dl.monitoring = true
-	elif name == "dr":
+	elif namer == "dr":
 		$Node/dr.monitoring = true
 
-	$atk.play("h" + name)
+	$atk.play("h" + namer)
 
 	$adad.stream = slashh
 	$adad.pitch_scale = randf_range(1.0, 1.3)
