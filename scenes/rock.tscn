@@ -719,6 +719,7 @@ position = Vector2(22, -9.5)
 position = Vector2(0, -34)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="pivot" unique_id=2016260525]
+visible = false
 position = Vector2(198, 35.000034)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_pr2fv")

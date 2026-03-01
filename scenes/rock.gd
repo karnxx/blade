@@ -16,6 +16,9 @@ var dir
 
 func _physics_process(delta: float) -> void:
 	if plr:
+		if lasering:
+			var target_angle = (plr.global_position - $pivot.global_position).angle()
+			$pivot.rotation = lerp_angle($pivot.rotation, target_angle, 2.5 * delta)
 		dir = plr.global_position - global_position
 		if dir.x < 0:
 			$AnimatedSprite2D.flip_h= true
@@ -56,7 +59,7 @@ func idle():
 		$AnimatedSprite2D.play('idle')
 
 func dash():
-	$AnimatedSprite2D.play('glowing')
+	$AnimatedSprite2D.play("glowing")
 	var twen = create_tween()
 	twen.tween_property(self, "global_position", plr.global_position, 0.8)
 	await twen.finished
@@ -64,25 +67,30 @@ func dash():
 func lazer():
 	if plr == null:
 		return
+
+	changestate(states.laser)
+
 	lasering = true
-	velocity = Vector2.ZERO
 	can_move = false
+	velocity = Vector2.ZERO
+
 	$pivot/AnimatedSprite2D.visible = true
 	$AnimatedSprite2D.play("lasercast")
 	await $AnimatedSprite2D.animation_finished
-	$pivot.rotation = (plr.global_position - $pivot.global_position).angle()
 	$pivot/AnimatedSprite2D.play("laser")
-	get_tree().create_timer(5).timeout.connect(stop_laser)
+	await get_tree().create_timer(5.0).timeout
+	stop_laser()
 	can_move = true
 	changestate(states.dash)
-	dash()
+	await dash()
+	changestate(states.follow)
 
 func stop_laser():
 	lasering = false
 	$pivot/AnimatedSprite2D.visible = false
 
 func follow():
-	if is_ranging:
+	if is_ranging or !can_move:
 		return
 	$AnimatedSprite2D.play('idle')
 	if plr == null:
@@ -94,7 +102,17 @@ func follow():
 		velocity = Vector2.ZERO
 		return
 	elif dir.length() > 200 and can_missle:
-		missile()
+		var rand = randi() % 3
+		match rand:
+			0:
+				changestate(states.homing_missle)
+				missile()
+			1:
+				changestate(states.dash)
+				dash()
+			2:
+				changestate(states.laser)
+				lazer()
 		velocity = Vector2.ZERO
 		return
 
@@ -110,9 +128,9 @@ func missile():
 	await get_tree().create_timer(1).timeout
 	is_ranging = false
 	get_tree().create_timer(15).timeout.connect(camissle)
-	lazer()
-	#changestate(states.dash)
-	#dash()
+	var rand = randi() % 3
+	changestate(states.dash)
+	dash()
 
 func camissle():
 	can_missle = true
