@@ -6,11 +6,14 @@ enum states {idle, melee, laser, death, follow, homing_missle, dash, buff}
 
 var current_state
 var previous_state
+var lasering = false
+var can_move = true
 
 var bulala = preload("uid://byqwfej4mhg8g")
 var is_ranging =false
 var can_missle = true
 var dir
+
 func _physics_process(delta: float) -> void:
 	if plr:
 		dir = plr.global_position - global_position
@@ -29,9 +32,10 @@ func _physics_process(delta: float) -> void:
 
 func melee():
 	velocity = Vector2.ZERO
+	can_move = false
 	$AnimatedSprite2D.play("attack")
 	await $AnimatedSprite2D.animation_finished
-	
+	can_move = true
 	if dir.length() > 80:
 		var rani = randi() % 1
 		if rani == 0:
@@ -56,6 +60,27 @@ func dash():
 	var twen = create_tween()
 	twen.tween_property(self, "global_position", plr.global_position, 0.8)
 	await twen.finished
+
+func lazer():
+	if plr == null:
+		return
+	lasering = true
+	velocity = Vector2.ZERO
+	can_move = false
+	$pivot/AnimatedSprite2D.visible = true
+	$AnimatedSprite2D.play("lasercast")
+	await $AnimatedSprite2D.animation_finished
+	$pivot.rotation = (plr.global_position - $pivot.global_position).angle()
+	$pivot/AnimatedSprite2D.play("laser")
+	get_tree().create_timer(5).timeout.connect(stop_laser)
+	can_move = true
+	changestate(states.dash)
+	dash()
+
+func stop_laser():
+	lasering = false
+	$pivot/AnimatedSprite2D.visible = false
+
 func follow():
 	if is_ranging:
 		return
@@ -85,8 +110,9 @@ func missile():
 	await get_tree().create_timer(1).timeout
 	is_ranging = false
 	get_tree().create_timer(15).timeout.connect(camissle)
-	changestate(states.dash)
-	dash()
+	lazer()
+	#changestate(states.dash)
+	#dash()
 
 func camissle():
 	can_missle = true

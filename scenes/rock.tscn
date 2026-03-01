@@ -602,42 +602,6 @@ region = Rect2(0, 1000, 300, 100)
 atlas = ExtResource("2_ik6fu")
 region = Rect2(0, 900, 300, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sao52"]
-atlas = ExtResource("2_ik6fu")
-region = Rect2(0, 800, 300, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qxa7m"]
-atlas = ExtResource("2_ik6fu")
-region = Rect2(0, 700, 300, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2xuf4"]
-atlas = ExtResource("2_ik6fu")
-region = Rect2(0, 600, 300, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0a74u"]
-atlas = ExtResource("2_ik6fu")
-region = Rect2(0, 500, 300, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tjjuj"]
-atlas = ExtResource("2_ik6fu")
-region = Rect2(0, 400, 300, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8uybx"]
-atlas = ExtResource("2_ik6fu")
-region = Rect2(0, 300, 300, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fujsv"]
-atlas = ExtResource("2_ik6fu")
-region = Rect2(0, 200, 300, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jyl5q"]
-atlas = ExtResource("2_ik6fu")
-region = Rect2(0, 100, 300, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3jjr8"]
-atlas = ExtResource("2_ik6fu")
-region = Rect2(0, 0, 300, 100)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_pr2fv"]
 animations = [{
 "frames": [{
@@ -700,33 +664,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_urpp0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sao52")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qxa7m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2xuf4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0a74u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tjjuj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8uybx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fujsv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jyl5q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3jjr8")
 }],
 "loop": false,
 "name": &"laser",
@@ -746,6 +683,7 @@ height = 80.0
 radius = 200.0
 
 [node name="Rock" type="CharacterBody2D" unique_id=2081025131]
+scale = Vector2(2, 2)
 collision_layer = 4
 slide_on_ceiling = false
 platform_on_leave = 2
@@ -754,8 +692,8 @@ script = ExtResource("1_872ht")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=615058613]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tqcpw")
-animation = &"rangedatk"
-frame = 8
+animation = &"lasercast"
+frame = 6
 frame_progress = 1.0
 
 [node name="deb" type="Label" parent="AnimatedSprite2D" unique_id=541691789]
@@ -779,14 +717,13 @@ position = Vector2(22, -9.5)
 
 [node name="pivot" type="Node2D" parent="." unique_id=1531934374]
 position = Vector2(0, -34)
-rotation = -6.2831855
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="pivot" unique_id=2016260525]
 position = Vector2(198, 35.000034)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_pr2fv")
 animation = &"laser"
-frame = 27
+frame = 19
 frame_progress = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1943822054]
