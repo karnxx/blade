@@ -395,6 +395,7 @@ glow_hdr_threshold = 1.5
 glow_hdr_luminance_cap = 2.0
 
 [node name="games" type="Node2D" unique_id=1763644330]
+y_sort_enabled = true
 
 [node name="plr" parent="." unique_id=1930804147 instance=ExtResource("1_u5sy4")]
 

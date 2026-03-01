@@ -58,6 +58,7 @@ func _ready():
 	disable_all_hitboxes()
 
 func _process(delta):
+	
 	mousepos = get_global_mouse_position()
 	stm_regen()
 	if stm > maxstm:
@@ -335,4 +336,4 @@ func stm_regen():
 
 func _on_atk_body_entered(body):
 	if body.is_in_group("enemy"):
-		body.get_dmged(atk)
+		body.get_dmged(atk, self)

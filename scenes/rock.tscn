@@ -670,6 +670,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2d0s"]
+size = Vector2(516, 37.5)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7wugo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qorm3"]
@@ -682,9 +685,11 @@ height = 80.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2d0s"]
 radius = 200.0
 
-[node name="Rock" type="CharacterBody2D" unique_id=2081025131]
+[node name="Rock" type="CharacterBody2D" unique_id=2081025131 groups=["enemy"]]
+y_sort_enabled = true
+position = Vector2(0, -74)
 scale = Vector2(2, 2)
-collision_layer = 4
+collision_layer = 6
 slide_on_ceiling = false
 platform_on_leave = 2
 script = ExtResource("1_872ht")
@@ -719,13 +724,18 @@ position = Vector2(22, -9.5)
 position = Vector2(0, -34)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="pivot" unique_id=2016260525]
-visible = false
 position = Vector2(198, 35.000034)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_pr2fv")
 animation = &"laser"
 frame = 19
 frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="pivot" unique_id=980080197]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/Area2D" unique_id=1947018556]
+position = Vector2(239.5, 1.75)
+shape = SubResource("RectangleShape2D_p2d0s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1943822054]
 
