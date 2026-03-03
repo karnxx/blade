@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ywqrq7s27hk1"]
+
+[ext_resource type="Texture2D" uid="uid://caqnt0rhdseph" path="res://assets/wtaer/parry.png" id="1_32kfd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp8ib"]
+atlas = ExtResource("1_32kfd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4n1m"]
+atlas = ExtResource("1_32kfd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1h148"]
+atlas = ExtResource("1_32kfd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpk23"]
+atlas = ExtResource("1_32kfd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sq284"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp8ib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4n1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1h148")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpk23")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="parry" type="AnimatedSprite2D" unique_id=466811053]
+z_index = 2
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sq284")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0

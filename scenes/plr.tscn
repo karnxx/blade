@@ -1677,9 +1677,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uamf4"]
-size = Vector2(73, 68)
+size = Vector2(73, 73)
 
 [node name="plr" type="CharacterBody2D" unique_id=1930804147 groups=["plr"]]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -18)
 collision_layer = 3
@@ -1695,7 +1696,6 @@ shape = SubResource("CapsuleShape2D_fdu53")
 position_smoothing_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1974334478]
-z_index = 1
 scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_o6bl5")
 animation = &"su"
@@ -1714,7 +1714,7 @@ collision_mask = 2
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/ul" unique_id=338360829]
-position = Vector2(-36.5, -34)
+position = Vector2(-36.5, -36)
 shape = SubResource("RectangleShape2D_uamf4")
 
 [node name="ur" type="Area2D" parent="Node" unique_id=2129839077]
@@ -1723,7 +1723,7 @@ collision_mask = 2
 monitoring = false
 
 [node name="ur" type="CollisionShape2D" parent="Node/ur" unique_id=2088930218]
-position = Vector2(37, -34)
+position = Vector2(37, -36)
 shape = SubResource("RectangleShape2D_uamf4")
 
 [node name="dr" type="Area2D" parent="Node" unique_id=1011513286]
@@ -1732,7 +1732,7 @@ collision_mask = 2
 monitoring = false
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Node/dr" unique_id=373948321]
-position = Vector2(37, 34)
+position = Vector2(37, 37)
 shape = SubResource("RectangleShape2D_uamf4")
 
 [node name="dl" type="Area2D" parent="Node" unique_id=414017900]
@@ -1741,7 +1741,7 @@ collision_mask = 2
 monitoring = false
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Node/dl" unique_id=1519862042]
-position = Vector2(-36, 34)
+position = Vector2(-36, 37)
 shape = SubResource("RectangleShape2D_uamf4")
 
 [node name="adad" type="AudioStreamPlayer2D" parent="." unique_id=943370148]

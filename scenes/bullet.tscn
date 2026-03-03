@@ -57,7 +57,7 @@ animations = [{
 size = Vector2(35, 10)
 
 [node name="bullet" type="Area2D" unique_id=1329225225]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 script = ExtResource("1_y25gk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1163437907]

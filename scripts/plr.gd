@@ -5,18 +5,22 @@ var def_stt = 1
 var stam_stt = 1
 var atk_stt = 1
 var spd_stt = 1
+var atk
+var def
+var stm
+
+
 
 var whoosh = preload("uid://du4pce7lw1t4a")
 var slash = preload("uid://rker5w4y7h1t")
 var whooshh = preload("uid://bmwqdsi7886pw")
 var slashh = preload("uid://dolq0nl7tg50m")
 
+var mhealth = 100
 var chealth = 100
 var spd: float = 300.0
-var atk
-var def
-var stm
 
+var cdmg = atk
 var maxstm
 
 var mousepos
@@ -32,8 +36,8 @@ var combo_timer = 0.0
 var combo_window = 1
 var check = false
 
-var light_cost = 10
-var heavy_cost = 25
+var light_cost = 40
+var heavy_cost = 60
 var hold_time = 0.35
 var hold_timer = 0.0
 
@@ -64,7 +68,8 @@ func _process(delta):
 	if stm > maxstm:
 		stm = maxstm
 	
-	if Input.is_action_pressed("rmb") and not isatk and not isvuln:
+	if Input.is_action_just_pressed("rmb") and not isatk and not isvuln:
+		is_parry = true
 		isshield = true
 		velocity = Vector2.ZERO
 		
@@ -78,21 +83,24 @@ func _process(delta):
 			anim = "su"
 		elif facing == "d":
 			anim = "sd"
-		is_parry = true
-		await get_tree().create_timer(0.3).timeout
-		is_parry = false
+		
 		if $AnimatedSprite2D.animation != anim + "i":
 			$AnimatedSprite2D.play(anim)
 			await $AnimatedSprite2D.animation_finished
 			if isshield:
 				$AnimatedSprite2D.play(anim + "i")
+		
+		await get_tree().create_timer(0.3).timeout
+		is_parry = false
+	
+	if Input.is_action_pressed("rmb") and not isatk and not isvuln:
+		isshield = true
 	else:
 		isshield = false
-	
-	if combo_timer > 0:
-		combo_timer -= delta
-		if combo_timer <= 0:
-			combo = 0
+		if combo_timer > 0:
+			combo_timer -= delta
+			if combo_timer <= 0:
+				combo = 0
 	
 	if Input.is_action_pressed("lmb") and not isatk and not isvuln:
 		hold_timer += delta
@@ -102,10 +110,12 @@ func _process(delta):
 		if hold_timer >= hold_time:
 			if stm >= heavy_cost:
 				stm -= heavy_cost
-				heavy()
+				heavy(hold_timer)
 		else:
 			if stm >= light_cost:
 				stm -= light_cost
+				if stm < 0:
+					stm = 0
 				atkk()
 		hold_timer = 0.0
 		spd = 300
@@ -157,7 +167,19 @@ func play_walk_anim():
 
 func get_dmged(dmg, dmger):
 	if is_parry:
-		dmger.stun()
+		var parry = preload("uid://ywqrq7s27hk1").instantiate()
+		if facing == "l" or facing == "ul" or facing == "dl":
+			parry.global_position = global_position + Vector2(-17,0)
+		elif facing == "r" or facing == "ur" or facing == "dr":
+			parry.global_position = global_position + Vector2(17,0)
+		elif facing == "u":
+			parry.global_position = global_position+  Vector2(0,-17)
+		elif facing == "d":
+			parry.global_position = global_position + Vector2(0,17)
+		get_parent().add_child(parry)
+		if dmger != null:
+			dmger.stun()
+		
 	elif isshield:
 		stm -= (dmg * 2) * def_stt
 	else:
@@ -189,8 +211,6 @@ func get_dir_name(dir):
 			return "dr"
 
 func atkk():
-	if stm < light_cost:
-		return
 	can_regen = false
 	$adad.stream = slash
 	$adad.pitch_scale = randf_range(1.0, 1.3)
@@ -199,7 +219,8 @@ func atkk():
 	$adad2.stream = whoosh
 	$adad2.pitch_scale = randf_range(1.0, 1.3)
 	$adad2.play()
-
+	cdmg = atk
+	
 	combo += 1
 	if combo > 3:
 		combo = 1
@@ -238,7 +259,7 @@ func atkk():
 	await get_tree().create_timer(light_vuln).timeout
 	isvuln = false
 
-	if check and stm >= light_cost:
+	if check and stm >= 20:
 		check = false
 		stm -= light_cost
 		atkk()
@@ -248,16 +269,15 @@ func atkk():
 	await get_tree().create_timer(0.4).timeout
 	can_regen = true
 
-func heavy():
-	if stm < heavy_cost:
-		return
-
+func heavy(tim):
 	isatk = true
 	ishatk = true
-
+	var max_charge = 1.5
+	var charge_time = clamp(tim - hold_time, 0.0, max_charge)
+	var charge_ratio = charge_time / max_charge
+	cdmg = atk * (1.5 + charge_ratio) * 2
 	var dir = get_snap_dir()
 	var namer = get_dir_name(dir)
-
 	$AnimatedSprite2D.stop()
 	$AnimatedSprite2D.play(namer + "1")
 
@@ -336,4 +356,4 @@ func stm_regen():
 
 func _on_atk_body_entered(body):
 	if body.is_in_group("enemy"):
-		body.get_dmged(atk, self)
+		body.get_dmged(cdmg, self)

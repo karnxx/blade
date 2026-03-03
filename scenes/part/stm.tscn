@@ -14,6 +14,14 @@ corner_radius_top_right = 500
 bg_color = Color(0.47277135, 0.64046484, 0.9956779, 1)
 corner_radius_top_left = 500
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh0rx"]
+bg_color = Color(0.59607846, 0, 0, 1)
+corner_radius_top_right = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xd1bl"]
+bg_color = Color(0.59607846, 0, 0, 1)
+corner_radius_top_left = 500
+
 [node name="stm" type="Control" unique_id=563463226]
 layout_mode = 3
 anchors_preset = 15
@@ -42,6 +50,31 @@ offset_right = 576.0
 offset_bottom = 637.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_mh0rx")
 theme_override_styles/fill = SubResource("StyleBoxFlat_40tdq")
+value = 50.0
+fill_mode = 1
+show_percentage = false
+
+[node name="ProgressBar3" type="ProgressBar" parent="." unique_id=2043077018]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 627.0
+offset_right = 976.0
+offset_bottom = 635.0
+scale = Vector2(1, -1)
+theme_override_styles/background = SubResource("StyleBoxEmpty_lb2pw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mh0rx")
+value = 50.0
+show_percentage = false
+
+[node name="ProgressBar4" type="ProgressBar" parent="." unique_id=301441827]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 627.0
+offset_right = 576.0
+offset_bottom = 635.0
+scale = Vector2(1, -1)
+theme_override_styles/background = SubResource("StyleBoxEmpty_mh0rx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xd1bl")
 value = 50.0
 fill_mode = 1
 show_percentage = false

@@ -518,9 +518,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_872ht"]
-radius = 17.5
-height = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqvgd"]
+size = Vector2(26, 34.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ldvrt"]
 atlas = ExtResource("2_ik6fu")
@@ -679,13 +678,14 @@ size = Vector2(516, 37.5)
 bg_color = Color(0, 1, 0, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ik6fu"]
-radius = 21.0
-height = 80.0
+radius = 9.5
+height = 62.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2d0s"]
 radius = 200.0
 
 [node name="Rock" type="CharacterBody2D" unique_id=2081025131 groups=["enemy"]]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -74)
 scale = Vector2(2, 2)
@@ -711,19 +711,22 @@ text = "debedb"
 [node name="a" type="Node2D" parent="AnimatedSprite2D" unique_id=2024791354]
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D/a" unique_id=1778512812]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/a/Area2D" unique_id=1265077753]
-position = Vector2(20, 1)
-shape = SubResource("CapsuleShape2D_872ht")
+position = Vector2(13.75, 1)
+shape = SubResource("RectangleShape2D_vqvgd")
 script = ExtResource("3_p2d0s")
 
 [node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D/a" unique_id=1226258322]
 position = Vector2(22, -9.5)
 
 [node name="pivot" type="Node2D" parent="." unique_id=1531934374]
+z_index = 4
 position = Vector2(0, -34)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="pivot" unique_id=2016260525]
+visible = false
 position = Vector2(198, 35.000034)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_pr2fv")
@@ -766,5 +769,7 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerdet" unique_id=1017552544]
 shape = SubResource("CircleShape2D_p2d0s")
 
+[connection signal="body_entered" from="AnimatedSprite2D/a/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="pivot/Area2D" to="." method="_on_area_2fd_body_entered"]
 [connection signal="body_entered" from="playerdet" to="." method="_on_playerdet_body_entered"]
 [connection signal="body_exited" from="playerdet" to="." method="_on_playerdet_body_exited"]
